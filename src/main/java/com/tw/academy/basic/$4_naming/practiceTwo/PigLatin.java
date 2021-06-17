@@ -6,9 +6,9 @@ public class PigLatin {
     private static final String WORD_SEPARATOR = " ";
 
     //Move the first letter of each word to the end of it, then add "ay" to the end of the word. Leave punctuation marks untouched.
-    public static String pigIt(String str) {
+    public static String pigIt(String sentence) {
         String[] punctuations = {".", ",", "-", ":", ";", "!", "?"};
-        String[] words = str.split(WORD_SEPARATOR);
+        String[] words = sentence.split(WORD_SEPARATOR);
         char firstLetter;
         boolean isNotPunctuation = true;
 

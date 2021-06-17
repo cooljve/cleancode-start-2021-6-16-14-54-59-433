@@ -66,13 +66,13 @@ public class PigLatinTest {
     public void RandomTests() {
         Random random = new Random();
         for (int i = 0; i < 100; i++) {
-            String[] s = new String[random.nextInt(6) + 1];
-            for (int j = 0; j < s.length; j++) {
-                s[j] = generateRandomChars(
+            String[] randomSizeWords = new String[random.nextInt(6) + 1];
+            for (int j = 0; j < randomSizeWords.length; j++) {
+                randomSizeWords[j] = generateRandomChars(
                         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", random.nextInt(10) + 3);
             }
-            String X = join(" ", s);
-            assertEquals(C(X), PigLatin.pigIt(X));
+            String randomSentence = join(" ", randomSizeWords);
+            assertEquals(C(randomSentence), PigLatin.pigIt(randomSentence));
         }
     }
 }
