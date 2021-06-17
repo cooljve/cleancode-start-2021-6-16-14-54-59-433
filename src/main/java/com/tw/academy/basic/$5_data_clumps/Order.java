@@ -5,43 +5,23 @@ public class Order {
     private int orderNumber;
     private Buyer buyer;
 
-
-
-    public String getAddress() {
-        return this.buyer.getAddress();
-    }
-
-    public void setAddress(String address) {
-        this.buyer.setAddress(address);
-    }
-
-    public String getPhoneNumber() {
-        return buyer.getPhoneNumber();
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.buyer.setPhoneNumber(phoneNumber);
-    }
-
-    public String getName() {
-        return buyer.getName();
-    }
-
-    public void setName(String name) {
-        this.buyer = new Buyer(name);
-    }
-
     public Order(int orderNumber, String buyerName, String buyerPhoneNumber, String buyerAddress) {
         this.orderNumber = orderNumber;
 
-        this.setName(buyerName);
-        this.setPhoneNumber(buyerPhoneNumber);
-        this.setAddress(buyerAddress);
+        this.setBuyer(buyerName, buyerPhoneNumber, buyerAddress);
     }
 
-    public String confirm(){
+    public Buyer getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(String buyerName, String buyerPhoneNumber, String buyerAddress) {
+        this.buyer = new Buyer(buyerName, buyerPhoneNumber, buyerAddress);
+    }
+
+    public String confirm() {
         return String.format("Please confirm buyer information: buyer name is %s, " +
-                "buyer phone number is %s and buyer address is %s.", this.getName(), this.getPhoneNumber(), this.getAddress());
+                "buyer phone number is %s and buyer address is %s.", this.getBuyer().getName(), this.getBuyer().getPhoneNumber(), this.getBuyer().getAddress());
     }
 }
 

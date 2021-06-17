@@ -1,6 +1,12 @@
 package com.tw.academy.basic.$5_data_clumps;
 
 public class Buyer {
+    public Buyer(String name, String phoneNumber, String address) {
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+    }
+
     private String name;
     private String phoneNumber;
     private String address;
