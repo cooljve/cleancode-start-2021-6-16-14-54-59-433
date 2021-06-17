@@ -14,23 +14,15 @@ public class OrderReceipt {
         this.o = o;
     }
 
-    //Deprecated
-    public String printCustomerName() {
-        return o.getCustomerName();
-    }
-
     //todo: rename -- Tom
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
 
-        // print headers
         output.append("======Printing Orders======\n");
 
         // print date, bill no, customer name
-//        output.append("Date - " + order.getDate();
         output.append(o.getCustomerName());
         output.append(o.getCustomerAddress());
-//        output.append(order.getCustomerLoyaltyNumber());
 
         // prints lineItems
         double totSalesTx = 0d;
