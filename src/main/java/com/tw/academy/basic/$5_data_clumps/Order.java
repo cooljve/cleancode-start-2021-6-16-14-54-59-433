@@ -10,11 +10,11 @@ public class Order {
     private String buyerAddress;
 
     public String getName() {
-        return name;
+        return buyer.getName();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.buyer = new Buyer(name);
     }
 
     public Order(int orderNumber, String buyerName, String buyerPhoneNumber, String buyerAddress) {
