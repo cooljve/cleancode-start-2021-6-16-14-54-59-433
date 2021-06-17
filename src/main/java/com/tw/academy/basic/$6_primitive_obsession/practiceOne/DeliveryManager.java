@@ -20,7 +20,7 @@ public class DeliveryManager {
     }
 
     private boolean isSameProvince() {
-        return getProvince(this.to.getFromAddress()).equals(getProvince(this.from.getFromAddress()));
+        return getProvince(this.to.getAddress()).equals(getProvince(this.from.getAddress()));
     }
 
     private boolean isLocal() {
@@ -28,7 +28,7 @@ public class DeliveryManager {
     }
 
     private boolean isSameCity() {
-        return getCity(this.to.getFromAddress()).equals(getCity(this.from.getFromAddress()));
+        return getCity(this.to.getAddress()).equals(getCity(this.from.getAddress()));
     }
 
     private String getCity(String address) {
