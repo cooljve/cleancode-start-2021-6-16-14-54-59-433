@@ -8,6 +8,12 @@ package com.tw.academy.basic.$7_long_method;
  * @since   2018-1-1
  */
 public class OrderReceipt {
+    public static final String RECEIPT_HEADER = "======Printing Orders======\n";
+    public static final double TAX_RATE = .10;
+    public static final String SALES_TAX_TITLE = "Sales Tax";
+    public static final String TOTAL_AMOUNT_TITLE = "Total Amount";
+    public static final char SEPARATOR_SYMBOL = '\t';
+    public static final char LINE_ITEM_SEPARATOR = '\n';
     private Order order;
 
     public OrderReceipt(Order order) {
@@ -17,7 +23,7 @@ public class OrderReceipt {
     public String getReceiptString() {
         StringBuilder receiptString = new StringBuilder();
 
-        receiptString.append("======Printing Orders======\n");
+        receiptString.append(RECEIPT_HEADER);
         receiptString.append(order.getCustomerName());
         receiptString.append(order.getCustomerAddress());
 
@@ -26,21 +32,21 @@ public class OrderReceipt {
         double totalAmountWithTax;
         for (LineItem lineItem : order.getLineItems()) {
             receiptString.append(lineItem.getDescription());
-            receiptString.append('\t');
+            receiptString.append(SEPARATOR_SYMBOL);
             receiptString.append(lineItem.getPrice());
-            receiptString.append('\t');
+            receiptString.append(SEPARATOR_SYMBOL);
             receiptString.append(lineItem.getQuantity());
-            receiptString.append('\t');
+            receiptString.append(SEPARATOR_SYMBOL);
             receiptString.append(lineItem.totalAmount());
-            receiptString.append('\n');
+            receiptString.append(LINE_ITEM_SEPARATOR);
             totalSales += lineItem.totalAmount();
         }
-        totalSalesTax = totalSales * .10;
+        totalSalesTax = totalSales * TAX_RATE;
         totalAmountWithTax = totalSales + totalSalesTax;
 
-        receiptString.append("Sales Tax").append('\t').append(totalSalesTax);
+        receiptString.append(SALES_TAX_TITLE).append(SEPARATOR_SYMBOL).append(totalSalesTax);
 
-        receiptString.append("Total Amount").append('\t').append(totalAmountWithTax);
+        receiptString.append(TOTAL_AMOUNT_TITLE).append(SEPARATOR_SYMBOL).append(totalAmountWithTax);
         return receiptString.toString();
     }
 }
