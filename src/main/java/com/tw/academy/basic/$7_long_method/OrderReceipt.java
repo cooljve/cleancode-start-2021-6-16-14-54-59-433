@@ -22,16 +22,14 @@ public class OrderReceipt {
 
     public String getReceiptString() {
         StringBuilder receiptString = new StringBuilder();
-
         generateBasicInfo(receiptString);
-
-        double totalSalesTax;
-        double totalSales = 0d;
-        double totalAmountWithTax;
         for (LineItem lineItem : order.getLineItems()) {
             generateLineItemInfo(receiptString, lineItem);
-            totalSales += lineItem.totalAmount();
         }
+        double totalSalesTax;
+        double totalSales;
+        double totalAmountWithTax;
+        totalSales = order.getLineItems().stream().map(LineItem::totalAmount).reduce(Double::sum).orElse(0d);
         totalSalesTax = totalSales * TAX_RATE;
         totalAmountWithTax = totalSales + totalSalesTax;
         receiptString.append(SALES_TAX_TITLE).append(SEPARATOR_SYMBOL).append(totalSalesTax);
