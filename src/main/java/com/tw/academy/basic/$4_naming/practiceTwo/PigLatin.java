@@ -10,24 +10,24 @@ public class PigLatin {
         String[] punctuations = {".", ",", "-", ":", ";", "!", "?"};
         String[] words = sentence.split(WORD_SEPARATOR);
         char firstLetter;
-        boolean isNotPunctuation = true;
 
         for (int i = 0; i < words.length; i++) {
-            for (String punctuation : punctuations) {
-                if (words[i].contains(punctuation)) {
-                    isNotPunctuation = false;
-                    break;
-                }
-            }
-
-            if (isNotPunctuation) {
+            if (!isPunctuation(punctuations, words[i])) {
                 firstLetter = words[i].charAt(0);
                 words[i] = words[i].substring(1);
                 words[i] = words[i].replace(words[i], words[i] + firstLetter + SUFFIX_STRING);
             }
-            isNotPunctuation = true;
         }
 
         return String.join(WORD_SEPARATOR, words);
+    }
+
+    private static boolean isPunctuation(String[] punctuations, String word) {
+        for (String punctuation : punctuations) {
+            if (word.contains(punctuation)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
