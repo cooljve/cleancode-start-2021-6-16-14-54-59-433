@@ -23,30 +23,36 @@ public class OrderReceipt {
     public String getReceiptString() {
         StringBuilder receiptString = new StringBuilder();
 
-        receiptString.append(RECEIPT_HEADER);
-        receiptString.append(order.getCustomerName());
-        receiptString.append(order.getCustomerAddress());
+        generateBasicInfo(receiptString);
 
         double totalSalesTax;
         double totalSales = 0d;
         double totalAmountWithTax;
         for (LineItem lineItem : order.getLineItems()) {
-            receiptString.append(lineItem.getDescription());
-            receiptString.append(SEPARATOR_SYMBOL);
-            receiptString.append(lineItem.getPrice());
-            receiptString.append(SEPARATOR_SYMBOL);
-            receiptString.append(lineItem.getQuantity());
-            receiptString.append(SEPARATOR_SYMBOL);
-            receiptString.append(lineItem.totalAmount());
-            receiptString.append(LINE_ITEM_SEPARATOR);
+            generateLineItemInfo(receiptString, lineItem);
             totalSales += lineItem.totalAmount();
         }
         totalSalesTax = totalSales * TAX_RATE;
         totalAmountWithTax = totalSales + totalSalesTax;
-
         receiptString.append(SALES_TAX_TITLE).append(SEPARATOR_SYMBOL).append(totalSalesTax);
-
         receiptString.append(TOTAL_AMOUNT_TITLE).append(SEPARATOR_SYMBOL).append(totalAmountWithTax);
         return receiptString.toString();
+    }
+
+    private void generateBasicInfo(StringBuilder receiptString) {
+        receiptString.append(RECEIPT_HEADER);
+        receiptString.append(order.getCustomerName());
+        receiptString.append(order.getCustomerAddress());
+    }
+
+    private void generateLineItemInfo(StringBuilder receiptString, LineItem lineItem) {
+        receiptString.append(lineItem.getDescription());
+        receiptString.append(SEPARATOR_SYMBOL);
+        receiptString.append(lineItem.getPrice());
+        receiptString.append(SEPARATOR_SYMBOL);
+        receiptString.append(lineItem.getQuantity());
+        receiptString.append(SEPARATOR_SYMBOL);
+        receiptString.append(lineItem.totalAmount());
+        receiptString.append(LINE_ITEM_SEPARATOR);
     }
 }
