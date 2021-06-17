@@ -1,19 +1,19 @@
 package com.tw.academy.basic.$6_primitive_obsession.practiceOne;
 
 public class DeliveryManager {
-    String toAddress;
-    String fromAddress;
+    private final Address from;
+    private final Address to;
 
-    public DeliveryManager(String fromAddress, String toAddress) {
-        this.toAddress = toAddress;
-        this.fromAddress = fromAddress;
+    public DeliveryManager(Address from, Address to) {
+        this.to = to;
+        this.from = from;
     }
 
     public DeliverCenter allocate(){
-        if (getProvince(toAddress).equals(getProvince(fromAddress)) && getCity(toAddress).equals(getCity(fromAddress))){
+        if (getProvince(this.to.getFromAddress()).equals(getProvince(this.from.getFromAddress())) && getCity(this.to.getFromAddress()).equals(getCity(this.from.getFromAddress()))){
             return DeliverCenter.LOCAL;
         }
-        if (getProvince(toAddress).equals(getProvince(fromAddress))) {
+        if (getProvince(this.to.getFromAddress()).equals(getProvince(this.from.getFromAddress()))) {
             return DeliverCenter.PROVINCE;
         }
         return DeliverCenter.FOREIGN;
