@@ -8,7 +8,7 @@ public class ParcelTest {
     @Test
     public void should_confirm_receiver_information_with_sender_when_collect_parcel() {
         Parcel parcel = new Parcel("Large", 12.5,
-                new User("Tom", "13132323232", "Home"), "Jerry","13123333333", "Hole");
+                new User("Tom", "13132323232", "Home"), new User("Jerry", "13123333333", "Hole"));
         String confirmReceiverMessage = parcel.confirmReceiver();
         String receiverExpect = "Please confirm receiver information: receiver name is Tom, receiver phone number is 13132323232 and receiver address is Home.\n";
 
