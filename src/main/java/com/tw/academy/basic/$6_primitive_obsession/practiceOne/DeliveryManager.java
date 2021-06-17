@@ -9,8 +9,8 @@ public class DeliveryManager {
         this.from = from;
     }
 
-    public DeliverCenter allocate(){
-        if (isLocal()){
+    public DeliverCenter allocate() {
+        if (isLocal()) {
             return DeliverCenter.LOCAL;
         }
         if (isSameProvince()) {
@@ -20,7 +20,7 @@ public class DeliveryManager {
     }
 
     private boolean isSameProvince() {
-        return getProvince(this.to.getAddress()).equals(getProvince(this.from.getAddress()));
+        return this.to.getProvince().equals(this.from.getProvince());
     }
 
     private boolean isLocal() {
@@ -28,14 +28,7 @@ public class DeliveryManager {
     }
 
     private boolean isSameCity() {
-        return getCity(this.to.getAddress()).equals(getCity(this.from.getAddress()));
+        return this.to.getCity().equals(this.from.getCity());
     }
 
-    private String getCity(String address) {
-        return address.substring(address.indexOf("省") + 1, address.indexOf("市"));
-    }
-
-    private String getProvince(String address) {
-        return address.substring(0, address.indexOf("省"));
-    }
 }
