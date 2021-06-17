@@ -21,13 +21,11 @@ public class OrderReceipt {
     }
 
     public String getReceiptString() {
-        StringBuilder receiptString = new StringBuilder();
-        generateBasicInfo(receiptString);
-        for (LineItem lineItem : order.getLineItems()) {
-            generateLineItemInfo(receiptString, lineItem);
-        }
-        generateAmountInfo(receiptString);
-        return receiptString.toString();
+        StringBuilder receiptInfo = new StringBuilder();
+        generateBasicInfo(receiptInfo);
+        order.getLineItems().forEach(lineItem -> generateLineItemInfo(receiptInfo, lineItem));
+        generateAmountInfo(receiptInfo);
+        return receiptInfo.toString();
     }
 
     private void generateAmountInfo(StringBuilder receiptString) {
