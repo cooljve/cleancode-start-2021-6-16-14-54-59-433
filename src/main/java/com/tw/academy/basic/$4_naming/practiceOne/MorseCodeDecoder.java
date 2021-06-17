@@ -1,16 +1,22 @@
 package com.tw.academy.basic.$4_naming.practiceOne;
 
 public class MorseCodeDecoder {
+
+    public static final String SPACE = " ";
+    public static final String NULL = "null";
+    public static final String EMPTY = "";
+
     public static String decode(String input) {
-        String[] tempValue = input.split("\\s{2,}");
-        StringBuilder res = new StringBuilder();
-        for (String s : tempValue) {
-            String [] charArray = s.split(" ");
-            for (String c: charArray) {
-                res.append(MorseCode.get(c));
+        String continuousSpace = "\\s{2,}";
+        String[] words = input.split(continuousSpace);
+        StringBuilder decodeMorseCode = new StringBuilder();
+        for (String word : words) {
+            String [] letters = word.split(SPACE);
+            for (String letter: letters) {
+                decodeMorseCode.append(MorseCode.get(letter));
             }
-            res.append(" ");
+            decodeMorseCode.append(SPACE);
         }
-        return res.toString().replaceAll("null", "").trim();
+        return decodeMorseCode.toString().replaceAll(NULL, EMPTY).trim();
     }
 }
