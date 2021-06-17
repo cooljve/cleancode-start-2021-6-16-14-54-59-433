@@ -5,6 +5,11 @@ public class Order {
     private int orderNumber;
     private Buyer buyer;
 
+    public Order(int orderNumber, Buyer buyer) {
+        this.orderNumber = orderNumber;
+        this.buyer = buyer;
+    }
+
     public Order(int orderNumber, String buyerName, String buyerPhoneNumber, String buyerAddress) {
         this.orderNumber = orderNumber;
 
