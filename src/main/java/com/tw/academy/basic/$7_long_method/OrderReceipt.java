@@ -3,9 +3,9 @@ package com.tw.academy.basic.$7_long_method;
 /**
  * This class is a example for bad smell;
  *
- * @author  Thoughtworks
+ * @author Thoughtworks
  * @version 1.0
- * @since   2018-1-1
+ * @since 2018-1-1
  */
 public class OrderReceipt {
     public static final String RECEIPT_HEADER = "======Printing Orders======\n";
@@ -26,6 +26,11 @@ public class OrderReceipt {
         for (LineItem lineItem : order.getLineItems()) {
             generateLineItemInfo(receiptString, lineItem);
         }
+        generateAmountInfo(receiptString);
+        return receiptString.toString();
+    }
+
+    private void generateAmountInfo(StringBuilder receiptString) {
         double totalSalesTax;
         double totalSales;
         double totalAmountWithTax;
@@ -34,7 +39,6 @@ public class OrderReceipt {
         totalAmountWithTax = totalSales + totalSalesTax;
         receiptString.append(SALES_TAX_TITLE).append(SEPARATOR_SYMBOL).append(totalSalesTax);
         receiptString.append(TOTAL_AMOUNT_TITLE).append(SEPARATOR_SYMBOL).append(totalAmountWithTax);
-        return receiptString.toString();
     }
 
     private void generateBasicInfo(StringBuilder receiptString) {
