@@ -1,12 +1,5 @@
 package com.tw.academy.basic.$7_long_method;
 
-/**
- * This class is a example for bad smell;
- *
- * @author Thoughtworks
- * @version 1.0
- * @since 2018-1-1
- */
 public class OrderReceipt {
     public static final String RECEIPT_HEADER = "======Printing Orders======\n";
     public static final double TAX_RATE = .10;
@@ -20,7 +13,7 @@ public class OrderReceipt {
         this.order = order;
     }
 
-    public String getReceiptString() {
+    public String generateReceiptInfo() {
         StringBuilder receiptInfo = new StringBuilder();
         generateBasicInfo(receiptInfo);
         order.getLineItems().forEach(lineItem -> generateLineItemInfo(receiptInfo, lineItem));
